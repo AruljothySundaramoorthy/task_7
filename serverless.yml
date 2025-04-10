@@ -1,0 +1,32 @@
+service: graphql-appsync-caller
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    APPSYNC_URL: ${env:APPSYNC_URL}
+    APPSYNC_API_KEY: ${env:APPSYNC_API_KEY}
+
+functions:
+  graphqlCaller:
+    handler: dist/handler.graphqlCaller
+    events:
+      - http:
+          path: graphql-call
+          method: post
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+custom:
+  dotenv:
+    path: .env
+  esbuild:
+    bundle: true
+    target: "node18"
+    platform: node
+    sourcemap: true
+    outdir: dist

@@ -1,0 +1,92 @@
+{
+  "F:\\test\\graphql-appsync-caller\\serverless.yml": {
+    "versionFramework": "4.12.0",
+    "servicePath": "F:\\test\\graphql-appsync-caller\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "graphql-appsync-caller",
+      "frameworkVersion": "4",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-east-1",
+        "environment": {
+          "APPSYNC_URL": "https://l7snjv2ykney5lda6obznfyhe4.appsync-api.ap-south-1.amazonaws.com/graphql",
+          "APPSYNC_API_KEY": "<REDACTED>"
+        },
+        "stage": "dev",
+        "versionFunctions": true
+      },
+      "functions": {
+        "graphqlCaller": {
+          "handler": "dist/handler.graphqlCaller",
+          "events": [
+            {
+              "http": {
+                "path": "graphql-call",
+                "method": "post"
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-esbuild",
+        "serverless-dotenv-plugin",
+        "serverless-offline"
+      ],
+      "custom": {
+        "dotenv": {
+          "path": ".env"
+        },
+        "esbuild": {
+          "bundle": true,
+          "target": "node18",
+          "platform": "node",
+          "sourcemap": true,
+          "outdir": "dist"
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs18.x",
+      "region": "us-east-1",
+      "environment": {
+        "APPSYNC_URL": "https://l7snjv2ykney5lda6obznfyhe4.appsync-api.ap-south-1.amazonaws.com/graphql",
+        "APPSYNC_API_KEY": "<REDACTED>"
+      },
+      "stage": "dev",
+      "versionFunctions": true
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "error": {
+      "message": "Serverless plugin \"serverless-esbuild\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.",
+      "stack": "ServerlessError2: Serverless plugin \"serverless-esbuild\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.\n    at PluginManager.resolveServicePlugins (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1023:2914)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async PluginManager.loadAllPlugins (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1023:1292)\n    at async Serverless.init (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1030:9843)\n    at async runFramework (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1057:839)\n    at async TraditionalRunner.run (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1053:28313)\n    at async route (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1084:2779)\n    at async Object.run (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1085:3661)\n    at async run2 (file:///C:/Users/arulj/.serverless/releases/4.12.0/package/dist/sf-core.js:1085:4814)",
+      "code": "PLUGIN_NOT_FOUND"
+    },
+    "serviceRawFile": "service: graphql-appsync-caller\r\nframeworkVersion: \"4\"\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: us-east-1\r\n  environment:\r\n    APPSYNC_URL: ${env:APPSYNC_URL}\r\n    APPSYNC_API_KEY: ${env:APPSYNC_API_KEY}\r\n\r\nfunctions:\r\n  graphqlCaller:\r\n    handler: dist/handler.graphqlCaller\r\n    events:\r\n      - http:\r\n          path: graphql-call\r\n          method: post\r\n\r\nplugins:\r\n  - serverless-esbuild\r\n  - serverless-dotenv-plugin\r\n  - serverless-offline\r\n\r\ncustom:\r\n  dotenv:\r\n    path: .env\r\n  esbuild:\r\n    bundle: true\r\n    target: \"node18\"\r\n    platform: node\r\n    sourcemap: true\r\n    outdir: dist\r\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "orgId": "db383044-3079-458d-95bc-3724339a7ef6",
+    "orgName": "aruljothy",
+    "userId": "mDvVYxwMRtGWYHFGgw",
+    "userName": "aruljothy",
+    "serviceProviderAwsAccountId": "877135268924",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
