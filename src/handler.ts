@@ -1,7 +1,5 @@
 import axios from "axios";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 const APPSYNC_URL = process.env.APPSYNC_URL!;
 const API_KEY = process.env.APPSYNC_API_KEY!;
