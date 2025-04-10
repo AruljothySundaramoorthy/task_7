@@ -1,13 +1,11 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: aruljothy
 service: graphql-appsync-caller
-frameworkVersion: "4"
 
 provider:
   name: aws
   runtime: nodejs18.x
   region: ap-south-1
-  environment:
-    APPSYNC_URL: ${env:APPSYNC_URL}
-    APPSYNC_API_KEY: ${env:APPSYNC_API_KEY}
 
 functions:
   graphqlCaller:
