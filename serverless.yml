@@ -1,0 +1,39 @@
+service: graphql-lambda-client
+
+frameworkVersion: "4"
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  stage: dev
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - secretsmanager:GetSecretValue
+          Resource: arn:aws:secretsmanager:ap-south-1:*:secret:AppSyncSecrets*
+
+functions:
+  createUser:
+    handler: dist/createUser.handler
+    events:
+      - http:
+          path: user
+          method: post
+
+  getUser:
+    handler: dist/getUser.handler
+    events:
+      - http:
+          path: user/{id}
+          method: get
+
+custom:
+  serverless-offline:
+    httpPort: 3000
